@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 1rem;
+
+    /* Warm cream palette */
+    --background: 0.945 0.032 83;
+    --foreground: 0.145 0 0;
+    --card: 1 0 0;
+    --card-foreground: 0.145 0 0;
+    --popover: 1 0 0;
+    --popover-foreground: 0.145 0 0;
+    --primary: 0.42 0.19 300;
+    --primary-foreground: 1 0 0;
+    --secondary: 0.898 0.055 82;
+    --secondary-foreground: 0.145 0 0;
+    --muted: 0.92 0.025 80;
+    --muted-foreground: 0.5 0 0;
+    --accent: 0.898 0.055 82;
+    --accent-foreground: 0.145 0 0;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+    --border: 0.865 0.035 82;
+    --input: 0.88 0.03 80;
+    --ring: 0.6 0.19 335;
+    --chart-1: 0.76 0.17 62;
+    --chart-2: 0.6 0.2 350;
+    --chart-3: 0.42 0.2 300;
+    --chart-4: 0.828 0.189 84;
+    --chart-5: 0.769 0.188 70;
+    --sidebar: 0.898 0.055 82;
+    --sidebar-foreground: 0.145 0 0;
+    --sidebar-primary: 0.42 0.19 300;
+    --sidebar-primary-foreground: 1 0 0;
+    --sidebar-accent: 0.945 0.032 83;
+    --sidebar-accent-foreground: 0.145 0 0;
+    --sidebar-border: 0.865 0.035 82;
+    --sidebar-ring: 0.708 0 0;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Poppins", sans-serif;
+  }
+}
+
+/* Instagram gradient utility */
+.ig-gradient {
+  background: linear-gradient(135deg, #f6a23a 0%, #e84e8a 50%, #8a3ab9 100%);
+}
+
+.ig-gradient-text {
+  background: linear-gradient(135deg, #f6a23a 0%, #e84e8a 50%, #8a3ab9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Confetti animation */
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-10px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.confetti-piece {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  animation: confetti-fall linear forwards;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+/* Float animation for hero elements */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(-5deg);
+  }
+  50% {
+    transform: translateY(-18px) rotate(5deg);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 5s ease-in-out infinite;
+}
