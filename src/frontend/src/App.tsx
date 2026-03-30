@@ -14,7 +14,7 @@ import {
   Star,
 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
 const BIRTHDAY_PERSON = "Your Friend";
@@ -227,6 +227,7 @@ function LoginCard({ onLogin }: { onLogin: (username: string) => void }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const passwordRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -235,7 +236,9 @@ function LoginCard({ onLogin }: { onLogin: (username: string) => void }) {
       setError("Please enter your Instagram username");
       return;
     }
-    if (password !== LOGIN_PASSWORD) {
+    // Read actual DOM value to handle browser autofill that may not fire onChange
+    const passwordValue = passwordRef.current?.value ?? password;
+    if (passwordValue.trim() !== LOGIN_PASSWORD.trim()) {
       setError("Incorrect password");
       return;
     }
@@ -320,6 +323,7 @@ function LoginCard({ onLogin }: { onLogin: (username: string) => void }) {
                 Password
               </label>
               <Input
+                ref={passwordRef}
                 id="login-password"
                 data-ocid="login.password_input"
                 type="password"
@@ -335,7 +339,7 @@ function LoginCard({ onLogin }: { onLogin: (username: string) => void }) {
                   setPassword(e.target.value);
                   setError("");
                 }}
-                autoComplete="current-password"
+                autoComplete="off"
                 aria-label="Password"
               />
             </div>
